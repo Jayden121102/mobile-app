@@ -2,8 +2,8 @@ import { useState } from "react";
 import { View, ScrollView, SafeAreaView } from "react-native";
 import { Stack, useRouter } from 'expo-router';
 
-import { COLORS, SIZES, FONTS } from '../recorder-mobile-app/src/constants';
-import { fonts, icons, images } from '../recorder-mobile-app/src/assets'
+import {COLORS,FONTS,SIZES,icons} from '../recorder-mobile-app/src/constants';
+import { ScreenStackHeaderLeftView, ScreenStackHeaderRightView } from "react-native-screens";
 
 
 const Home = () => {
@@ -14,9 +14,28 @@ const Home = () => {
         charcoalgray}}>
             <Stack.Screen
                 options={{
-                    headerStyle: { backgroundColor: COLORS.charcoalgray}
+                    headerStyle: { backgroundColor: COLORS.primary},
+                    headerShadowVisible: false,
+                    headerLeft: () => (
+                        <ScreenStackHeaderLeftView iconURL={icons.menu} Dimension="60%" />
+                    ),
+                    headerRight: () => (
+                        <ScreenStackHeaderRightView iconURL={icons.menu} Dimension="100%" />
+                    ),
+                    headerTitle:""
                 }}
             />
+
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View
+                    style={{
+                        flex: 1,
+                        padding: SIZES.medium
+                    }}
+                >
+                    <Welcome/>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
